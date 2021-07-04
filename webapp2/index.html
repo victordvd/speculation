@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>My APP</title>
+
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
+		<!-- version 
+		v(大改版).(小改版).(修正版).(上版日期YYYYMMDD)
+	-->
+	<!-- <div hidden id ="version">v1.10.1.20191205</div> -->
+	<div hidden id ="version">v1.10.1</div>
+
+	<script type="text/javascript" src="lib/webix_6.2.6_com/codebase/webix.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/webix_6.2.6_com/codebase/webix.css"> 
+	<!-- <script type="text/javascript" src="lib/webix_5.3.5_pro/codebase/webix.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/webix_5.3.5_pro/codebase/webix.css"> -->
+
+	<script src="lib\alasql.min.js"></script>
+	<!--dynamically include app.js/css with version-->
+	<script>  
+		var OUTPUT_OFFSET = '-7';//opt_output date range
+
+		var environment = '';//PROD(empty),TEST
+		var version = document.getElementById("version").innerText
+		var script = document.createElement("script");  
+		script.type = "text/javascript";  
+		script.src = "codebase/myapp.js?v=" + version; 
+
+		var link = document.createElement("link");  
+		link.rel = "stylesheet"; 
+		link.type="text/css";
+		link.href="codebase/myapp.css?v=" + version;  
+
+		document.head.appendChild(script);
+		document.head.appendChild(link);
+	
+	</script>
+
+	<!--宇清环境-->
+	<script type="text/javascript">
+		var apiurl = "http://www.youthought.com.tw:8081/api/query";
+		var apiconnName = "USCHEDULING_ORACLE_BOE";
+		var dbtype = "ORACLE";
+	</script>
+
+</head>
+
+<body></body>
+
+</html>
