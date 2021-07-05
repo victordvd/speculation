@@ -1,43 +1,40 @@
-var PoistionCoefficient = /** @class */ (function () {
-    function PoistionCoefficient() {
+class PoistionCoefficient {
+    constructor() {
         this.y = 0; //profit
         this.x = 0; //settle price
     }
-    return PoistionCoefficient;
-}());
-var PostionStore = /** @class */ (function () {
-    function PostionStore() {
-    }
-    PostionStore.getData = function () {
+}
+class PostionStore {
+    static getData() {
         return this.data;
-    };
-    PostionStore.addPosition = function (p) {
+    }
+    static addPosition(p) {
         this.data.push(p);
-    };
-    PostionStore.removeAllPosition = function () {
+    }
+    static removeAllPosition() {
         this.data = [];
         Utils.getPositionTable().find("tr:gt(0)").remove();
         PostionStore.plotPosition();
-    };
-    PostionStore.removePosition = function (p) {
-        var delRecIdx = undefined;
-        this.data.forEach(function (rec, i) {
+    }
+    static removePosition(p) {
+        let delRecIdx = undefined;
+        this.data.forEach((rec, i) => {
             if (rec.equals(p))
                 delRecIdx = i;
         });
         if (delRecIdx !== undefined)
             this.data.splice(delRecIdx, 1);
         console.log('removed rec: ' + delRecIdx);
-    };
-    PostionStore.plotPosition = function () {
-        var fplot = document.querySelector("#fplot");
-        var fnEtStk = this.getAnalyzeFn();
+    }
+    static plotPosition() {
+        const fplot = document.querySelector("#fplot");
+        let fnEtStk = this.getAnalyzeFn();
         // console.log(data)
         //reset
         while (fplot.firstChild) {
             fplot.removeChild(fplot.firstChild);
         }
-        var fpVO = {
+        let fpVO = {
             target: fplot,
             tip: {
                 xLine: true,
@@ -56,23 +53,25 @@ var PostionStore = /** @class */ (function () {
             //   {fn: '3x'}
             // ]
         };
-        var spot = $('#spot').val();
+        let spot = $('#spot').val();
         if (spot)
             fpVO.annotations.push({ x: spot, text: 'spot: ' + spot });
         functionPlot(fpVO);
-    };
-    PostionStore.getAnalyzeFn = function () {
-        var strikes = new Set;
+    }
+    static getAnalyzeFn() {
+        let strikes = new Set;
         //[{strike,[m1,b1],[m2,b2]}]
-        var posiFnVO = [];
-        this.data.forEach(function (pos) {
-            var hRange = [0, pos.strike];
-            var sRange = [pos.strike, Infinity];
+        let posiFnVO = [];
+        this.data.forEach((pos) => {
+            let hRange = [0, pos.strike];
+            let sRange = [pos.strike, Infinity];
             //multi
-            var m1;
-            var b1;
-            var m2;
-            var b2;
+            let m1;
+            let b1;
+            let m2;
+            let b2;
+            let ls;
+            let cp;
             if (pos.contract === Contract.TXO) {
                 if (pos.ls === LS.LONG)
                     ls = -1;
@@ -109,16 +108,16 @@ var PostionStore = /** @class */ (function () {
             }
         });
         return this.addPosiFunc(Array.from(strikes), posiFnVO);
-    };
-    PostionStore.addPosiFunc = function (strikes, posiFnVO) {
+    }
+    static addPosiFunc(strikes, posiFnVO) {
         strikes.push(Infinity);
-        strikes.sort(function (a, b) { return a - b; });
+        strikes.sort((a, b) => { return a - b; });
         //[[[range],m,b]]
-        var fnSet = [];
-        var annotations = [];
-        strikes.forEach(function (item, i) {
+        let fnSet = [];
+        let annotations = [];
+        strikes.forEach((item, i) => {
             //[[range],m,b]
-            var defautFnVO = [[strikes[i], strikes[i + 1]], 0, 0];
+            let defautFnVO = [[strikes[i], strikes[i + 1]], 0, 0];
             if (i === 0) {
                 fnSet.push([[0, strikes[0]], 0, 0]);
                 fnSet.push(defautFnVO);
@@ -133,10 +132,10 @@ var PostionStore = /** @class */ (function () {
         if (fnSet.length === 0 && posiFnVO.length !== 0) {
             fnSet.push([[0, Infinity], 0, 0]);
         }
-        posiFnVO.forEach(function (posi) {
-            var contract = posi[0];
-            var strike = posi[1];
-            fnSet.forEach(function (fn) {
+        posiFnVO.forEach(posi => {
+            let contract = posi[0];
+            let strike = posi[1];
+            fnSet.forEach(fn => {
                 if (contract === Contract.TXO) {
                     if (fn[0][1] <= strike) {
                         //m
@@ -161,16 +160,15 @@ var PostionStore = /** @class */ (function () {
         });
         console.log(fnSet);
         //range ,fn
-        var plotVO = [];
+        let plotVO = [];
         plotVO.push({ range: [0, Infinity], fn: '0', skipTip: true });
-        fnSet.forEach(function (item) {
+        fnSet.forEach((item) => {
             plotVO.push({ range: item[0], fn: item[1] + '*x+' + item[2] /*,closed: true*/ });
         });
         return { annotations: annotations, data: plotVO };
-    };
-    // static strikes:Array<number>
-    // static m:number
-    // static b:number
-    PostionStore.data = [];
-    return PostionStore;
-}());
+    }
+}
+// static strikes:Array<number>
+// static m:number
+// static b:number
+PostionStore.data = [];

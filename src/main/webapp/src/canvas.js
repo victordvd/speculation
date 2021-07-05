@@ -1,28 +1,25 @@
-var Coordinate = /** @class */ (function () {
-    function Coordinate(x, y) {
+class Coordinate {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
     }
-    return Coordinate;
-}());
-var CanvasBuilder = /** @class */ (function () {
-    function CanvasBuilder() {
-    }
-    CanvasBuilder.init = function () {
+}
+class CanvasBuilder {
+    static init() {
         CanvasBuilder.canvas = document.getElementById("canv");
         CanvasBuilder.ctx = CanvasBuilder.canvas.getContext("2d");
         CanvasBuilder.y_base = CanvasBuilder.canvas.height / 2;
         CanvasBuilder.draw();
-        CanvasBuilder.canvas.addEventListener('mousemove', function (e) {
+        CanvasBuilder.canvas.addEventListener('mousemove', (e) => {
             CanvasBuilder.draw();
-            var rect = CanvasBuilder.canvas.getBoundingClientRect();
-            var x = e.pageX - Number(rect.left.toFixed(0));
-            var y = e.pageY - Number(rect.top.toFixed(0));
+            let rect = CanvasBuilder.canvas.getBoundingClientRect();
+            let x = e.pageX - Number(rect.left.toFixed(0));
+            let y = e.pageY - Number(rect.top.toFixed(0));
             // console.log(x+' : '+y)
-            var mousePointX = CanvasBuilder.min_settle + x * CanvasBuilder.settlePerPx;
-            var totalProfit = 0;
+            let mousePointX = CanvasBuilder.min_settle + x * CanvasBuilder.settlePerPx;
+            let totalProfit = 0;
             //get positions from store
-            PostionStore.getData().forEach(function (mod) {
+            PostionStore.getData().forEach((mod) => {
                 totalProfit += mod.getProfit(mousePointX);
             });
             //cursor line
@@ -34,9 +31,9 @@ var CanvasBuilder = /** @class */ (function () {
             CanvasBuilder.ctx.stroke();
             CanvasBuilder.ctx.fillStyle = "#000";
             CanvasBuilder.ctx.font = "10px Arial";
-            var floatText = "price: " + mousePointX.toString();
+            let floatText = "price: " + mousePointX.toString();
             // floatText+="\nprofit: " + (CanvasBuilder.canvas.height/2-y)*CanvasBuilder.profitPerPx
-            var floatText2 = "profit: " + totalProfit / CanvasBuilder.profitPerPx;
+            let floatText2 = "profit: " + totalProfit / CanvasBuilder.profitPerPx;
             if (CanvasBuilder.ctx.measureText(floatText).width > CanvasBuilder.canvas.width - x - 10) {
                 CanvasBuilder.ctx.textAlign = "right";
                 CanvasBuilder.ctx.fillText(floatText, x - 10, y + 5);
@@ -48,13 +45,12 @@ var CanvasBuilder = /** @class */ (function () {
                 CanvasBuilder.ctx.fillText(floatText2, x + 20, y + 15);
             }
         });
-        CanvasBuilder.canvas.addEventListener('mouseout', function (e) {
+        CanvasBuilder.canvas.addEventListener('mouseout', (e) => {
             CanvasBuilder.clear();
             CanvasBuilder.draw();
         });
-    };
-    CanvasBuilder.draw = function () {
-        var _this = this;
+    }
+    static draw() {
         CanvasBuilder.clear();
         CanvasBuilder.settlePerPx = CanvasBuilder.settle_range / CanvasBuilder.canvas.width;
         CanvasBuilder.profitPerPx = CanvasBuilder.profit_range / CanvasBuilder.canvas.height;
@@ -64,14 +60,14 @@ var CanvasBuilder = /** @class */ (function () {
         CanvasBuilder.ctx.moveTo(0, CanvasBuilder.canvas.height / 2);
         CanvasBuilder.ctx.lineTo(CanvasBuilder.canvas.width, CanvasBuilder.canvas.height / 2);
         CanvasBuilder.ctx.stroke();
-        PostionStore.getData().forEach(function (mod) {
-            var settle_origin;
+        PostionStore.getData().forEach((mod) => {
+            let settle_origin;
             //TXO or TX
             if (mod.contract === Contract.TXO)
                 settle_origin = mod.strike;
             else
                 settle_origin = Number(Number(mod.price / 50).toFixed(0)) * 50;
-            var x_0 = CanvasBuilder.convertSettleToX(settle_origin);
+            let x_0 = CanvasBuilder.convertSettleToX(settle_origin);
             CanvasBuilder.max_settle = settle_origin + CanvasBuilder.settle_range / 2;
             CanvasBuilder.min_settle = settle_origin - CanvasBuilder.settle_range / 2;
             if (mod.contract === Contract.TXO) {
@@ -87,39 +83,38 @@ var CanvasBuilder = /** @class */ (function () {
             CanvasBuilder.ctx.font = "8px Arial";
             CanvasBuilder.ctx.textAlign = "center";
             CanvasBuilder.ctx.strokeStyle = "black";
-            for (var i = CanvasBuilder.min_settle; i <= CanvasBuilder.max_settle; i += 50) {
+            for (let i = CanvasBuilder.min_settle; i <= CanvasBuilder.max_settle; i += 50) {
                 //scale
                 CanvasBuilder.ctx.beginPath();
-                CanvasBuilder.ctx.moveTo(_this.convertSettleToX(i), CanvasBuilder.canvas.height / 2 * CanvasBuilder.profitPerPx - 5);
-                CanvasBuilder.ctx.lineTo(_this.convertSettleToX(i), CanvasBuilder.canvas.height / 2 * CanvasBuilder.profitPerPx + 1);
+                CanvasBuilder.ctx.moveTo(this.convertSettleToX(i), CanvasBuilder.canvas.height / 2 * CanvasBuilder.profitPerPx - 5);
+                CanvasBuilder.ctx.lineTo(this.convertSettleToX(i), CanvasBuilder.canvas.height / 2 * CanvasBuilder.profitPerPx + 1);
                 CanvasBuilder.ctx.stroke();
                 //settle text
-                CanvasBuilder.ctx.fillText(i.toString(), _this.convertSettleToX(i), CanvasBuilder.canvas.height / 2 * CanvasBuilder.profitPerPx + 10);
+                CanvasBuilder.ctx.fillText(i.toString(), this.convertSettleToX(i), CanvasBuilder.canvas.height / 2 * CanvasBuilder.profitPerPx + 10);
             }
             //----draw diagram----
-            _this.drawPosition(mod);
+            this.drawPosition(mod);
             // if (mod.contract === Contract.TXO) {
             // }
         });
-    };
-    CanvasBuilder.convertSettleToX = function (settle) {
+    }
+    static convertSettleToX(settle) {
         return (settle - CanvasBuilder.min_settle) / this.settlePerPx;
-    };
-    CanvasBuilder.convertProfitToY = function (profit) {
+    }
+    static convertProfitToY(profit) {
         return (CanvasBuilder.profit_range / 2 - profit) / this.profitPerPx;
-    };
-    CanvasBuilder.clear = function () {
+    }
+    static clear() {
         // ctx.clearRect(0, 0, canvas.width, canvas.height)
         CanvasBuilder.ctx.fillStyle = "#FFF";
         CanvasBuilder.ctx.fillRect(0, 0, CanvasBuilder.canvas.width, CanvasBuilder.canvas.height);
-    };
-    CanvasBuilder.drawPosition = function (mod) {
-        var _this = this;
+    }
+    static drawPosition(mod) {
         CanvasBuilder.ctx.strokeStyle = "blue";
         CanvasBuilder.ctx.beginPath();
-        mod.getInflections(this.max_settle, this.profit_range / 2, this.min_settle, -this.profit_range / 2).forEach(function (coor, idx) {
-            var x = _this.convertSettleToX(coor.x);
-            var y = _this.convertProfitToY(coor.y);
+        mod.getInflections(this.max_settle, this.profit_range / 2, this.min_settle, -this.profit_range / 2).forEach((coor, idx) => {
+            let x = this.convertSettleToX(coor.x);
+            let y = this.convertProfitToY(coor.y);
             // console.log('s:p '+coor.x+' : '+coor.y)
             // console.log('x:y '+x+' : '+y)
             if (idx === 0)
@@ -128,9 +123,8 @@ var CanvasBuilder = /** @class */ (function () {
                 CanvasBuilder.ctx.lineTo(x, y);
         });
         CanvasBuilder.ctx.stroke();
-    };
-    CanvasBuilder.isInit = false;
-    CanvasBuilder.settle_range = 600;
-    CanvasBuilder.profit_range = 300;
-    return CanvasBuilder;
-}());
+    }
+}
+CanvasBuilder.isInit = false;
+CanvasBuilder.settle_range = 600;
+CanvasBuilder.profit_range = 300;
