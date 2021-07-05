@@ -1,3 +1,6 @@
+declare var txoData:any;
+declare function functionPlot(arg: any): any;
+
 class PoistionCoefficient {
 
     y: number = 0//profit
@@ -18,7 +21,7 @@ class PostionStore {
     settle: number//x
     strike: number
     cp: number//C:+1  P:-1
-    ls: number;//L:-  S:+
+    ls: number//L:-  S:+
     price: number
 
     // static strikes:Array<number>
@@ -117,6 +120,8 @@ class PostionStore {
             let m2: number
             let b2: number
 
+            let ls
+            let cp
 
             if (pos.contract === Contract.TXO) {
                 if (pos.ls === LS.LONG)

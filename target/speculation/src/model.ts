@@ -350,8 +350,8 @@ class PositionModel {
 
     // console.log('getSettle')
 
-    let settle: number
     let ls = (this.ls === LS.LONG) ? -1 : 1
+    let settle
 
     if (this.contract === Contract.TX) {
 
