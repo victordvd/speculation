@@ -204,7 +204,7 @@ class PositionModel {
       tx.selected = true
 
     td.append(conCbx)
-    Contract.TXO
+ 
     this.row.append(td)
     this.td_con = td
   }
