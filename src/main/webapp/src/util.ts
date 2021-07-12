@@ -1,4 +1,7 @@
-class Utils {
+import {PostionStore} from './position_store'
+import {PositionModel,Contract,CP,LS} from './model'
+
+export class Utils {
   static posiFn: any = {}
 
   static checkNull(o: any) {

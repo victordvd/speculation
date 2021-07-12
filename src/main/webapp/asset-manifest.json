@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/speculation/static/css/main.445c4984.chunk.css",
+    "main.js": "/speculation/static/js/main.736533c5.chunk.js",
+    "main.js.map": "/speculation/static/js/main.736533c5.chunk.js.map",
+    "runtime-main.js": "/speculation/static/js/runtime-main.345a1ad7.js",
+    "runtime-main.js.map": "/speculation/static/js/runtime-main.345a1ad7.js.map",
+    "static/js/2.79ea85aa.chunk.js": "/speculation/static/js/2.79ea85aa.chunk.js",
+    "static/js/2.79ea85aa.chunk.js.map": "/speculation/static/js/2.79ea85aa.chunk.js.map",
+    "static/js/3.ed284ef6.chunk.js": "/speculation/static/js/3.ed284ef6.chunk.js",
+    "static/js/3.ed284ef6.chunk.js.map": "/speculation/static/js/3.ed284ef6.chunk.js.map",
+    "index.html": "/speculation/index.html",
+    "static/css/main.445c4984.chunk.css.map": "/speculation/static/css/main.445c4984.chunk.css.map",
+    "static/js/2.79ea85aa.chunk.js.LICENSE.txt": "/speculation/static/js/2.79ea85aa.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.345a1ad7.js",
+    "static/js/2.79ea85aa.chunk.js",
+    "static/css/main.445c4984.chunk.css",
+    "static/js/main.736533c5.chunk.js"
+  ]
+}

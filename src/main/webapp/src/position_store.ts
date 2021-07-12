@@ -1,7 +1,11 @@
-declare var txoData:any;
+import React from 'react';
+import $ from 'jquery';
+import {PositionModel,Contract,CP,LS} from './model'
+import {Utils} from './util'
+import GlobalVar from './Global'
 declare function functionPlot(arg: any): any;
 
-class PoistionCoefficient {
+export class PoistionCoefficient {
 
     y: number = 0//profit
     x: number = 0//settle price
@@ -14,7 +18,7 @@ class PoistionCoefficient {
 
 }
 
-class PostionStore {
+export class PostionStore {
 
     //plot function Coefficients
     profit: number//y
@@ -84,7 +88,7 @@ class PostionStore {
             },
             grid: true,
             yAxis: { label: 'Profit (tick)' },
-            xAxis: { domain: [txoData.spot - 500, txoData.spot + 500], label: 'Settle Price' },
+            xAxis: { domain: [GlobalVar.txoData.spot - 500, GlobalVar.txoData.spot + 500], label: 'Settle Price' },
             data: fnEtStk.data,
             annotations: fnEtStk.annotations
             // data: [

@@ -1,8 +1,14 @@
-enum LS { LONG = "Long", SHORT = "Short" }
-enum CP { CALL = "Call", PUT = "Put" }
-enum Contract { TX = 'TX', TXO = 'TXO' }
+import $ from 'jquery';
+import {Coordinate} from './canvas'
+import {PostionStore} from './position_store'
+import {Utils} from './util'
 
-class PositionModel {
+export enum LS { LONG = "Long", SHORT = "Short" }
+export enum CP { CALL = "Call", PUT = "Put" }
+export enum Contract { TX = 'TX', TXO = 'TXO' }
+
+
+export class PositionModel {
 
   enabled: boolean
   

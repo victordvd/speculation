@@ -1,4 +1,7 @@
-class Coordinate {
+import {Contract, PositionModel} from './model'
+import {PostionStore} from './position_store'
+
+export class Coordinate {
     x: number
     y: number
 
@@ -8,7 +11,7 @@ class Coordinate {
     }
 }
 
-class CanvasBuilder {
+export class CanvasBuilder {
 
     static isInit = false
 
@@ -198,3 +201,5 @@ class CanvasBuilder {
         CanvasBuilder.ctx.stroke()
     }
 }
+
+export {}
