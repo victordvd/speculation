@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/speculation/static/css/main.1d03008a.chunk.css",
-    "main.js": "/speculation/static/js/main.b6cc414c.chunk.js",
-    "main.js.map": "/speculation/static/js/main.b6cc414c.chunk.js.map",
+    "main.css": "/speculation/static/css/main.445c4984.chunk.css",
+    "main.js": "/speculation/static/js/main.f0c430dd.chunk.js",
+    "main.js.map": "/speculation/static/js/main.f0c430dd.chunk.js.map",
     "runtime-main.js": "/speculation/static/js/runtime-main.14bf9274.js",
     "runtime-main.js.map": "/speculation/static/js/runtime-main.14bf9274.js.map",
-    "static/js/2.c9926ff0.chunk.js": "/speculation/static/js/2.c9926ff0.chunk.js",
-    "static/js/2.c9926ff0.chunk.js.map": "/speculation/static/js/2.c9926ff0.chunk.js.map",
+    "static/js/2.a8444218.chunk.js": "/speculation/static/js/2.a8444218.chunk.js",
+    "static/js/2.a8444218.chunk.js.map": "/speculation/static/js/2.a8444218.chunk.js.map",
     "static/js/3.ef80746f.chunk.js": "/speculation/static/js/3.ef80746f.chunk.js",
     "static/js/3.ef80746f.chunk.js.map": "/speculation/static/js/3.ef80746f.chunk.js.map",
     "index.html": "/speculation/index.html",
-    "static/css/main.1d03008a.chunk.css.map": "/speculation/static/css/main.1d03008a.chunk.css.map",
-    "static/js/2.c9926ff0.chunk.js.LICENSE.txt": "/speculation/static/js/2.c9926ff0.chunk.js.LICENSE.txt"
+    "static/css/main.445c4984.chunk.css.map": "/speculation/static/css/main.445c4984.chunk.css.map",
+    "static/js/2.a8444218.chunk.js.LICENSE.txt": "/speculation/static/js/2.a8444218.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.14bf9274.js",
-    "static/js/2.c9926ff0.chunk.js",
-    "static/css/main.1d03008a.chunk.css",
-    "static/js/main.b6cc414c.chunk.js"
+    "static/js/2.a8444218.chunk.js",
+    "static/css/main.445c4984.chunk.css",
+    "static/js/main.f0c430dd.chunk.js"
   ]
 }
