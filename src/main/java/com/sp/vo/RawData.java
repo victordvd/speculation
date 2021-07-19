@@ -8,9 +8,9 @@ public class RawData {
 
 	public BigDecimal spot;
 
-	public String targetContract;
+	public String targetContractCode;
 
-	public List<String> contracts;
+	public List<String> contractCodes;
 
 	public TreeSet<Integer> strikes;
 
