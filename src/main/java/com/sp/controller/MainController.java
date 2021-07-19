@@ -87,10 +87,14 @@ public class MainController {
 
 	@RequestMapping(value = "/getTxoData", method = { RequestMethod.GET }, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public CommonVo getTxoData() {
-		System.out.println("getTxoData");
+	public CommonVo getTxoData(HttpServletRequest request, @RequestParam(required = false) String contractWeek) {
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+			ipAddress = request.getRemoteAddr();
+		}
+		System.out.println("IP: " + ipAddress + ", contract week: " + contractWeek);
 		try {
-			return new CommonVo(simulatorService.getTxoData());
+			return new CommonVo(simulatorService.getTxoData(contractWeek));
 		} catch (IOException e) {
 			return new CommonVo(e.getMessage());
 		}

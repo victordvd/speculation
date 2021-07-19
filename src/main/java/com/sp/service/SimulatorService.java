@@ -10,9 +10,9 @@ import com.sp.vo.RawData;
 @Service
 public class SimulatorService {
 
-	public RawData getTxoData() throws IOException {
+	public RawData getTxoData(String contractWeek) throws IOException {
 
-		return TxoDataFetch.fetchTxoRawData();
+		return TxoDataFetch.fetchTxoRawData(contractWeek);
 	}
 
 }

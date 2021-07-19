@@ -21,13 +21,14 @@ import com.sp.vo.RawData;
 
 public class TxoDataFetch {
 
-	public static RawData fetchTxoRawData() throws IOException {
+	public static RawData fetchTxoRawData(String contractWeek) throws IOException {
 		RawData raw = new RawData();
 		raw.strikes = new TreeSet<>();
 
-		String contractParam = "202106W4";
-		String url = "https://tw.screener.finance.yahoo.net/future/aa03?opmr=optionfull&opcm=WTXO&opym="
-				+ contractParam;
+		String url = "https://tw.screener.finance.yahoo.net/future/aa03?opmr=optionfull&opcm=WTXO";
+
+		if (contractWeek != null)
+			url += "&opym=" + contractWeek;
 
 		System.out.println("src url: " + url);
 
