@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'speculation'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2AA757E1236B464FBF0F0FDE0A5DE1F0 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CF30925688E348FF8107CFF3E5EEFA98 }}
           package: '*.war'
