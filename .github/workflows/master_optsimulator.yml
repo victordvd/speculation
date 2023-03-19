@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'optsimulator'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A8E064E4BDCF4028AA85D5A40076D542 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_19869947BCA245C19A65F7873761D82C }}
           package: '*.jar'
